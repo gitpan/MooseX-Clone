@@ -15,7 +15,7 @@ use Scalar::Util qw(refaddr);
 
     has foo => (
         traits => [qw(Clone)],
-        isa => "Foo",
+        isa => "Foo|HashRef",
         is  => "rw",
         default => sub { Foo->new },
     );
@@ -24,6 +24,12 @@ use Scalar::Util qw(refaddr);
         isa => "Foo",
         is  => "rw",
         default => sub { Foo->new },
+    );
+
+    has floo => (
+        traits => [qw(NoClone)],
+        isa => "Int",
+        is  => "rw",
     );
 
     package Foo;
@@ -45,11 +51,13 @@ use Scalar::Util qw(refaddr);
 }
 
 
-my $bar = Bar->new;
+my $bar = Bar->new( floo => 3 );
 
 isa_ok( $bar, "Bar" );
 isa_ok( $bar->foo, "Foo" );
 isa_ok( $bar->same, "Foo" );
+
+is( $bar->floo, 3, "explicit init_arg" );
 
 is( $bar->foo->copy_number, 0, "first copy" );
 is( $bar->same->copy_number, 0, "first copy" );
@@ -60,6 +68,8 @@ my $copy = $bar->clone;
 
 isnt( refaddr($bar), refaddr($copy), "copy" );
 
+is( $copy->floo, undef, "NoClone" );
+
 is( $copy->foo->copy_number, 1, "copy number incremented" );
 is( $copy->same->copy_number, 0, "not incremented for uncloned attr" );
 
@@ -69,4 +79,14 @@ isnt( refaddr($bar->foo), refaddr($copy->foo), "copy" );
 is( refaddr($bar->same), refaddr($copy->same), "copy" );
 
 is( $copy->clone( foo => { some_attr => "laaa" } )->foo->some_attr, "laaa", "Value carried over to recursive call to clone" );
+
+my $hash = { foo => Foo->new };
+my $hash_copy = Bar->new( foo => $hash )->clone->foo;
+
+isnt( refaddr($hash), refaddr($hash_copy), "hash copied" );
+is_deeply( [ sort keys %$hash ], [ sort keys %$hash_copy ], "hash keys exist in clone" );
+isa_ok($hash_copy->{foo}, "Foo");
+isnt( refaddr($hash->{foo}), refaddr($hash_copy->{foo}), "foo inside hash cloned too" );
+is( $hash_copy->{foo}->copy_number, 1, "copy number" );
+
 

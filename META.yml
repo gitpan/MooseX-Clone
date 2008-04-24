@@ -1,12 +1,13 @@
 --- #YAML:1.0
 name:                MooseX-Clone
-version:             0.01
+version:             0.02
 abstract:            ~
 license:             ~
 author:              ~
 generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
+    Data::Visitor:                 0.15
     Hash::Util::FieldHash::Compat: 0
     Moose:                         0.40
     Test::use::ok:                 0

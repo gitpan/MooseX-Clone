@@ -3,12 +3,15 @@
 package MooseX::Clone;
 use Moose::Role;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 use Hash::Util::FieldHash::Compat qw(idhash);
 
 use MooseX::Clone::Meta::Attribute::Trait::Clone;
 use MooseX::Clone::Meta::Attribute::Trait::NoClone;
+use MooseX::Clone::Meta::Attribute::Trait::Copy;
+
+use namespace::clean -except => [qw(meta)];
 
 sub clone {
     my ( $self, %params ) = @_;
@@ -151,7 +154,7 @@ value, and does not have to be an array or hash reference.
 
 =head1 TODO
 
-Refactor to work in term of a metaclass trait so that C<<meta->clone_object>>
+Refactor to work in term of a metaclass trait so that C<< meta->clone_object >>
 will still do the right thing.
 
 =head1 THANKS
@@ -168,8 +171,8 @@ Yuval Kogman E<lt>nothingmuch@woobling.orgE<gt>
 
 =head1 COPYRIGHT
 
-	Copyright (c) 2008 Yuval Kogman. All rights reserved
-	This program is free software; you can redistribute
-	it and/or modify it under the same terms as Perl itself.
+    Copyright (c) 2008 Yuval Kogman. All rights reserved
+    This program is free software; you can redistribute
+    it and/or modify it under the same terms as Perl itself.
 
 =cut

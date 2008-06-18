@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                MooseX-Clone
-version:             0.02
+version:             0.03
 abstract:            ~
 license:             ~
 author:              ~
@@ -10,6 +10,7 @@ requires:
     Data::Visitor:                 0.15
     Hash::Util::FieldHash::Compat: 0
     Moose:                         0.40
+    namespace::clean:              0.08
     Test::use::ok:                 0
 meta-spec:
     url:     http://module-build.sourceforge.net/META-spec-v1.3.html

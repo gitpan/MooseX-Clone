@@ -5,6 +5,8 @@ use Moose::Role;
 
 use Carp qw(croak);
 
+use namespace::clean -except => 'meta';
+
 with qw(MooseX::Clone::Meta::Attribute::Trait::Clone::Base);
 
 sub Moose::Meta::Attribute::Custom::Trait::Copy::register_implementation { __PACKAGE__ }
@@ -15,9 +17,6 @@ sub clone_value {
     return unless $self->has_value($proto);
 
     my $clone = exists $args{init_arg} ? $args{init_arg} : $self->_copy_ref($self->get_value($proto));
-
-    warn "orig: " . $self->get_value($proto);
-    warn "clone: " . $clone;
 
     $self->set_value( $target, $clone );
 }

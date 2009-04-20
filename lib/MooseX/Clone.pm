@@ -3,15 +3,16 @@
 package MooseX::Clone;
 use Moose::Role;
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 use Hash::Util::FieldHash::Compat qw(idhash);
 
 use MooseX::Clone::Meta::Attribute::Trait::Clone;
+use MooseX::Clone::Meta::Attribute::Trait::StorableClone;
 use MooseX::Clone::Meta::Attribute::Trait::NoClone;
 use MooseX::Clone::Meta::Attribute::Trait::Copy;
 
-use namespace::clean -except => [qw(meta)];
+use namespace::clean -except => 'meta';
 
 sub clone {
     my ( $self, %params ) = @_;
@@ -22,7 +23,7 @@ sub clone {
 
     idhash my %clone_args;
 
-    attr: foreach my $attr ($meta->compute_all_applicable_attributes()) {
+    attr: foreach my $attr ($meta->get_all_attributes()) {
         # collect all attrs that can be cloned.
         # if they have args in %params then those are passed to the recursive cloning op
         if ( $attr->does("MooseX::Clone::Meta::Attribute::Trait::Clone::Base") ) {

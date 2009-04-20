@@ -14,21 +14,23 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 9a6669fa9bc57b666ab7f16ecd0aed6caa786b26 Changes
-SHA1 30d90fb9ff5b42cda72a20e8651c880a7f14d159 MANIFEST
-SHA1 d918d49846ce681c872494649caa04afbfad0bee MANIFEST.SKIP
-SHA1 9a67718d0d0d5be9864601ea03e3390053ad1d37 META.yml
-SHA1 cf1efa695d8ccc3578f19b29eb65c00c0ade204e Makefile.PL
-SHA1 44ba0ebdf133b2e12f2e09937d05a9f25c86e5d2 lib/MooseX/Clone.pm
-SHA1 1ab9e7552485cdf8375e4df24e0e50a18f970c8d lib/MooseX/Clone/Meta/Attribute/Trait/Clone.pm
+SHA1 b36f3898dd9358e3e5b76b62e58d6a8d32247812 Changes
+SHA1 7a31a27495af5eae99be90988845c48bf6029858 MANIFEST
+SHA1 190e9058eb9c6446a1a3f3ddf15b082f1ecde152 MANIFEST.SKIP
+SHA1 0a9a49d66956c876ace1c8ff28af274119862c91 META.yml
+SHA1 c2d2e660d73bc6dc4f78da56245cb9fb25647193 Makefile.PL
+SHA1 cda3f1decabbbdab02965c393e16aa59f8384354 lib/MooseX/Clone.pm
+SHA1 c62288b14873bcf3c0f28430b796bda209da9e96 lib/MooseX/Clone/Meta/Attribute/Trait/Clone.pm
 SHA1 e91991fef9bc32c3ec9062f4584b27f248534cee lib/MooseX/Clone/Meta/Attribute/Trait/Clone/Base.pm
-SHA1 f131fed585ecb64020160da3d0335fc3b0ab06a7 lib/MooseX/Clone/Meta/Attribute/Trait/Copy.pm
+SHA1 1f32bf8a2e43675f8e1e74c2962f2491e2aeac52 lib/MooseX/Clone/Meta/Attribute/Trait/Clone/Std.pm
+SHA1 4a2a6440466154abd02b09b72e7759d3d724ab84 lib/MooseX/Clone/Meta/Attribute/Trait/Copy.pm
 SHA1 8d4bd7f05e74d25115c1558f6ef5f97ffe8ce0ab lib/MooseX/Clone/Meta/Attribute/Trait/NoClone.pm
-SHA1 1d379a383b49158cb0295eccad69d22982848e8a t/basic.t
+SHA1 d4a8de859dccee4a2f90f02e3af857562f765133 lib/MooseX/Clone/Meta/Attribute/Trait/StorableClone.pm
+SHA1 96c97f40ff26f572bccbb05bd7b2ddde9b908214 t/basic.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.7 (Darwin)
 
-iD8DBQFIWOlkVCwRwOvSdBgRArhhAJ4iDjhY/CN2hQKeSaQ4V8WIfBJe9ACgr419
-IdKDXvCFesHeoBADBKRMdkU=
-=QKwM
+iD8DBQFJ7LGyVCwRwOvSdBgRAmK4AJ0SUuwN4874Df9a1xpTlV64hhZ/rACfVjn4
+kmnIcG/IqB7F9YRfVpuVPqw=
+=9OFe
 -----END PGP SIGNATURE-----

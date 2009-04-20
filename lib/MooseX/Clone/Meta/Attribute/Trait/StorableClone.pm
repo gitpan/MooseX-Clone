@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-package MooseX::Clone::Meta::Attribute::Trait::Clone;
+package MooseX::Clone::Meta::Attribute::Trait::StrableClone;
 use Moose::Role;
 
 use Carp qw(croak);
@@ -9,84 +9,17 @@ use namespace::clean -except => 'meta';
 
 with qw(MooseX::Clone::Meta::Attribute::Trait::Clone::Std);
 
-sub Moose::Meta::Attribute::Custom::Trait::Clone::register_implementation { __PACKAGE__ }
-
-has clone_only_objects => (
-    isa => "Bool",
-    is  => "rw",
-    default => 0,
-);
-
-has clone_visitor => (
-    isa => "Data::Visitor",
-    is  => "rw",
-    lazy_build => 1,
-);
-
-has clone_visitor_config => (
-    isa => "HashRef",
-    is  => "ro",
-    default => sub { { } },
-);
-
-sub _build_clone_visitor {
-    my $self = shift;
-
-    require Data::Visitor::Callback;
-
-    Data::Visitor::Callback->new(
-        object => sub { $self->clone_object_value($_[1]) },
-        tied_as_objects => 1,
-        %{ $self->clone_visitor_config },
-    );
-}
+sub Moose::Meta::Attribute::Custom::Trait::StorableClone::register_implementation { __PACKAGE__ }
 
 sub clone_value_data {
     my ( $self, $value, @args ) = @_;
 
-    if ( blessed($value) ) {
-        $self->clone_object_value($value, @args);
+    if ( ref($value) ) {
+        require Storable;
+        return Storable::dclone($value);
     } else {
-        unless ( $self->clone_only_objects ) {
-            $self->clone_any_value($value, @args);
-        } else {
-            my %args = @args;
-            return exists $args{init_arg}
-            ? $args{init_arg} # taken as a literal value
-            : $value;
-        }
+        return $value;
     }
-}
-
-sub clone_object_value {
-    my ( $self, $value, %args ) = @_;
-
-    if ( $value->can("clone") ) {
-        my @clone_args;
-
-        if ( exists $args{init_arg} ) {
-            my $init_arg = $args{init_arg};
-
-            if ( ref $init_arg ) {
-                if ( ref $init_arg eq 'HASH' )  { @clone_args = %$init_arg }
-                elsif ( ref $init_arg eq 'ARRAY' ) { @clone_args = @$init_arg }
-                else {
-                    croak "Arguments to a sub clone should be given in a hash or array reference";
-                }
-            } else {
-                croak "Arguments to a sub clone should be given in a hash or array reference";
-            }
-        }
-
-        return $value->clone(@clone_args);
-    } else {
-        croak "Cannot recursively clone a retarded object $value (" . overload::StrVal($value) . ") in " . $args{attr}->name . ". Try something better.";
-    }
-}
-
-sub clone_any_value {
-    my ( $self, $value, @args ) = @_;
-    $self->clone_visitor->visit($value);
 }
 
 __PACKAGE__
@@ -99,19 +32,19 @@ __END__
 
 =head1 NAME
 
-MooseX::Clone::Meta::Attribute::Trait::Clone - The L<Moose::Meta::Attribute>
-trait for deeply cloning attributes.
+MooseX::Clone::Meta::Attribute::Trait::StorableClone - The L<Moose::Meta::Attribute>
+trait for deeply cloning attributes using L<Storable>.
 
 =head1 SYNOPSIS
 
     # see MooseX::Clone
 
     has foo => (
-        traits => [qw(Clone)],
+        traits => [qw(StorableClone)],
         isa => "Something",
     );
 
-    $object->clone; # will recursively call $object->foo->clone and set the value properly
+    my $clone = $object->clone; # $clone->foo will equal Storable::dclone($object->foo)
 
 =head1 DESCRIPTION
 

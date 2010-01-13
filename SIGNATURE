@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.55.
+signed via the Module::Signature module, version 0.61.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,23 +14,24 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 b36f3898dd9358e3e5b76b62e58d6a8d32247812 Changes
-SHA1 7a31a27495af5eae99be90988845c48bf6029858 MANIFEST
+SHA1 233d63545de8f2c778f145e0bfe27fe1d76fdd68 Changes
+SHA1 e9684f5d7fff2575dd1f8a45d6db3965a29b7e76 MANIFEST
 SHA1 190e9058eb9c6446a1a3f3ddf15b082f1ecde152 MANIFEST.SKIP
-SHA1 0a9a49d66956c876ace1c8ff28af274119862c91 META.yml
+SHA1 ef1412820bfe9d3c8ae4d42744b99d25e816cf14 META.yml
 SHA1 c2d2e660d73bc6dc4f78da56245cb9fb25647193 Makefile.PL
-SHA1 cda3f1decabbbdab02965c393e16aa59f8384354 lib/MooseX/Clone.pm
-SHA1 c62288b14873bcf3c0f28430b796bda209da9e96 lib/MooseX/Clone/Meta/Attribute/Trait/Clone.pm
+SHA1 b7cef6bdf11a249feaacfc20855bb64b04e1fda9 lib/MooseX/Clone.pm
+SHA1 18bc51be816c7d0e2259b4516e5230945e12ec74 lib/MooseX/Clone/Meta/Attribute/Trait/Clone.pm
 SHA1 e91991fef9bc32c3ec9062f4584b27f248534cee lib/MooseX/Clone/Meta/Attribute/Trait/Clone/Base.pm
-SHA1 1f32bf8a2e43675f8e1e74c2962f2491e2aeac52 lib/MooseX/Clone/Meta/Attribute/Trait/Clone/Std.pm
+SHA1 2032a4a9ade9579d1649fd1568e61157ba15be04 lib/MooseX/Clone/Meta/Attribute/Trait/Clone/Std.pm
 SHA1 4a2a6440466154abd02b09b72e7759d3d724ab84 lib/MooseX/Clone/Meta/Attribute/Trait/Copy.pm
 SHA1 8d4bd7f05e74d25115c1558f6ef5f97ffe8ce0ab lib/MooseX/Clone/Meta/Attribute/Trait/NoClone.pm
 SHA1 d4a8de859dccee4a2f90f02e3af857562f765133 lib/MooseX/Clone/Meta/Attribute/Trait/StorableClone.pm
-SHA1 96c97f40ff26f572bccbb05bd7b2ddde9b908214 t/basic.t
+SHA1 96c97f40ff26f572bccbb05bd7b2ddde9b908214 t/01_basic.t
+SHA1 f7deeef5e8d2c41e6090644e59ef69f9afad5a72 t/02_auto_deref.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.7 (Darwin)
+Version: GnuPG/MacGPG2 v2.0.12 (Darwin)
 
-iD8DBQFJ7LGyVCwRwOvSdBgRAmK4AJ0SUuwN4874Df9a1xpTlV64hhZ/rACfVjn4
-kmnIcG/IqB7F9YRfVpuVPqw=
-=9OFe
+iEYEARECAAYFAktODDIACgkQVCwRwOvSdBgC8ACdHAWMj7Z/Ju8KXmo1svDjkiY3
+ZY4AnRwXhW+yXSWPHzzyY2FNO+4/EcME
+=0S8Q
 -----END PGP SIGNATURE-----
